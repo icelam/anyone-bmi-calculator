@@ -1,0 +1,460 @@
+@import './variables';
+@import './colors';
+@import './mixin';
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  color: $color-font-light;
+  background-color: $color-body-background;
+  width: 100%;
+  height: 100%;
+  min-width: 320px;
+  @include body-font;
+}
+
+h1 {
+  font-size: 5vh;
+  line-height: 5vh;
+  margin: 0 0 5vh 0;
+}
+
+input[type="text"] {
+  @include appearance-none;
+  @include input-style;
+  @include body-font;
+}
+
+input[type=submit], button {
+  @include appearance-none;
+  cursor: pointer;
+  background-color: $color-calculate-button-background;
+  box-shadow: none;
+  border: 0;
+  border-radius: 8px;
+  color: $color-calculate-button-text;
+  display: inline-block;
+  font-size: 1.25em;
+  padding: 12px 60px;
+  text-decoration: none;
+  white-space: nowrap;
+  font-family: inherit;
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+}
+
+input[type=range] {
+  @include appearance-none;
+  width: 100%;
+  margin: 10px 0;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::-webkit-slider-runnable-track {
+    @include slider-track;
+    @include slider-box-shadow;
+    background: $color-slider-track-background;
+    border-radius: $slider-track-height;
+    border: 0;
+  }
+
+  &::-webkit-slider-thumb {
+    @include slider-thumb;
+    @include slider-box-shadow;
+    @include appearance-none;
+    margin-top: -($slider-thumb-size - $slider-track-height) / 2;
+  }
+
+  &:focus::-webkit-slider-runnable-track {
+    background: $color-slider-track-background;
+  }
+
+  &::-moz-range-track {
+    @include slider-track;
+    @include slider-box-shadow;
+    background: $color-slider-track-background;
+    border-radius: $slider-track-height;
+    border: 0;
+  }
+
+  &::-moz-range-thumb {
+    @include slider-thumb;
+    @include slider-box-shadow;
+  }
+
+  &::-moz-focus-outer {
+    border: 0;
+  }
+
+  &::-ms-track {
+    @include slider-track;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+  }
+
+  &::-ms-fill-lower {
+    background: $color-slider-track-background-lower;
+    border: 0;
+    border-radius: $slider-thumb-size 0 0 $slider-thumb-size;
+    @include slider-box-shadow;
+  }
+
+  &::-ms-fill-upper {
+    background: $color-slider-track-background;
+    border: 0;
+    border-radius: $slider-thumb-size;
+    @include slider-box-shadow;
+  }
+
+  &::-ms-thumb {
+    @include slider-thumb;
+    @include slider-box-shadow;
+    width: $slider-track-height;
+    height: $slider-track-height;
+  }
+
+  &:focus::-ms-fill-lower {
+    background: $color-slider-track-background-lower;
+  }
+
+  &:focus::-ms-fill-upper {
+    background: $color-slider-track-background;
+  }
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+.right {
+  flex: 4 4 0;
+  background-color: $color-draw-area-background;
+  padding: 10vh 5vh;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.left {
+  flex: 6 6 0;
+  background-color: $color-body-background;
+  padding: 10vh;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.draw-area {
+  height: calc(100% - 105px);
+  min-height: 200px;
+  position: relative;
+
+  .anyone {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+    &__head {
+      top: 0;
+      height: 25%;
+      @include center-unknown;
+    }
+
+    &__body {
+      bottom: 0;
+      height: 77%;
+      @include center-unknown;
+      width: auto;
+    }
+  }
+}
+
+.bmi {
+  margin: 60px 0 22px 0;
+  position: relative;
+
+  &__bar {
+    background-image: -webkit-gradient(linear, left top, right top, from($color-bmi-level-1-background), color-stop($bmi-gradient-position-2, $color-bmi-level-2-background), color-stop($bmi-gradient-position-3, $color-bmi-level-3-background), to($color-bmi-level-4-background));
+    background-image: -webkit-linear-gradient(left, $color-bmi-level-1-background $bmi-gradient-position-1, $color-bmi-level-2-background $bmi-gradient-position-2, $color-bmi-level-3-background $bmi-gradient-position-3, $color-bmi-level-4-background $bmi-gradient-position-4);
+    background-image: -o-linear-gradient(left, $color-bmi-level-1-background $bmi-gradient-position-1, $color-bmi-level-2-background $bmi-gradient-position-2, $color-bmi-level-3-background $bmi-gradient-position-3, $color-bmi-level-4-background $bmi-gradient-position-4);
+    background-image: linear-gradient(to right, $color-bmi-level-1-background $bmi-gradient-position-1, $color-bmi-level-2-background $bmi-gradient-position-2, $color-bmi-level-3-background $bmi-gradient-position-3, $color-bmi-level-4-background $bmi-gradient-position-4);
+    width: 100%;
+    height: $bmi-bar-height;
+    border-radius: $bmi-bar-height;
+  }
+
+  &__level {
+    height: $bmi-level-height;
+    position: absolute;
+    top: 0;
+
+    &--level1 {
+      width: $bmi-level-1-width;
+      border-right: 1px solid $color-bmi-level-border;
+      left: 0;
+    }
+
+    &--level2 {
+      width: $bmi-level-2-width;
+      border-right: 1px solid $color-bmi-level-border;
+      left: $bmi-level-1-width;
+    }
+
+    &--level3 {
+      width: $bmi-level-3-width;
+      border-right: 1px solid $color-bmi-level-border;
+      left: $bmi-level-1-width + $bmi-level-2-width;
+    }
+
+    &--level4 {
+      width: $bmi-level-4-width;
+      left: $bmi-level-1-width + $bmi-level-2-width + $bmi-level-3-width;
+    }
+
+    &__text {
+      display: block;
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      text-align: center;
+      color: $color-bmi-level-text;
+      width: 100%;
+      font-size: 0.875em;
+      line-height: 1.15em;
+    }
+  }
+
+  &__index {
+    position: absolute;
+    top: -42px;
+    left: 0;
+    margin-left: -($bmi-index-bubble-width / 2);
+
+    &__text {
+      font-size: 0.875em;
+      font-size: 0.875em;
+      line-height: 1.15em;
+      padding: 0.5em;
+      background-color: $color-bmi-level-1-background;
+      border-radius: 5px;
+      min-width: $bmi-index-bubble-width;
+      text-align: center;
+      display: block;
+      box-sizing: border-box;
+    }
+
+    &:after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: $bmi-index-arrow-size $bmi-index-arrow-size 0 $bmi-index-arrow-size;
+      border-color: $color-bmi-level-1-background transparent transparent transparent;
+      position: absolute;
+      left: 50%;
+      bottom: -$bmi-index-arrow-size;
+      margin-left: -$bmi-index-arrow-size;
+    }
+
+    &--level1 {
+      >span {
+        background-color: $color-bmi-level-1-background;
+      }
+
+      &:after {
+        border-color: $color-bmi-level-1-background transparent transparent transparent;
+      }
+    }
+
+    &--level2 {
+      >span {
+        background-color: $color-bmi-level-2-background;
+      }
+
+      &:after {
+        border-color: $color-bmi-level-2-background transparent transparent transparent;
+      }
+    }
+
+    &--level3 {
+      >span {
+        background-color: $color-bmi-level-3-background;
+      }
+
+      &:after {
+        border-color: $color-bmi-level-3-background transparent transparent transparent;
+      }
+    }
+
+    &--level4 {
+      >span {
+        background-color: $color-bmi-level-4-background;
+      }
+
+      &:after {
+        border-color: $color-bmi-level-4-background transparent transparent transparent;
+      }
+    }
+  }
+}
+
+.calculator {
+  padding: 5vh;
+  box-sizing: border-box;
+  border-radius: 6vh;
+  background: $color-calculator-area-background;
+  color: $color-font-dark;
+  min-height: 70vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &__item + &__item {
+    margin-top: 5vh;
+  }
+
+  label {
+    font-size: 1.725em;
+    color: $color-calculator-label;
+  }
+
+  .input-group {
+    display: flex;
+    align-items: center;
+  }
+
+  .input-slider {
+    flex: 1 1 auto;
+    padding-right: 20px;
+  }
+
+  .input-text {
+    flex: 0 0 auto;
+    position: relative;
+
+    .unit {
+      position: absolute;
+      right: 20px;
+      top: 0;
+      line-height: 66px;
+    }
+  }
+
+  &__button button {
+    margin: 50px auto 0 auto;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  h1 {
+    font-size: 1.5em;
+    line-height: 2em;
+    text-align: center;
+  }
+  .row {
+    flex-direction: column;
+  }
+
+  .right {
+    flex: 1 1 auto;
+    padding: 30px 5%;
+    overflow: initial;
+  }
+
+  .left {
+    flex: 0 0 auto;
+    padding: 5%;
+    overflow: initial;
+  }
+
+  .bmi {
+    margin: 55px 0 22px 0;
+  }
+
+  .calculator {
+    padding: 8%;
+    min-height: auto;
+    border-radius: 15px;
+
+    label {
+      font-size: 1.375em;
+    }
+  }
+}
+
+/* @media screen and (max-width: 991px) and (orientation:landscape) {
+  .calculator {
+    .input-group {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .input-text {
+      max-width: 150px;
+    }
+  }
+} */
+
+@media screen and (max-width: 575px) {
+  h1 {
+    font-size: 1.25em;
+    line-height: 1.5em;
+    margin: 0 0 15px 0;
+    text-align: center;
+  }
+
+  .calculator {
+    display: block;
+
+    &__item {
+      width: 50%;
+      float: left;
+      text-align: center;
+      padding: 0 10px;
+      box-sizing: border-box;
+    }
+
+    &__item + &__item {
+      margin-top: 0;
+    }
+
+    label {
+      font-size: 1em;
+    }
+
+    .input-group {
+      display: block;
+    }
+
+    .input-slider {
+      display: none;
+    }
+
+    .input-text {
+      max-width: 100%;
+
+      .unit {
+        right: 12px;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 10px 40px 10px 10px;
+      }
+    }
+
+    &__button button {
+      width: 100%;
+      font-size: 1em;
+      padding: 10px;
+      margin-top: 20px;
+    }
+  }
+}

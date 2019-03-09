@@ -1,0 +1,54 @@
+@mixin body-font {
+  font-size: $base-font-size;
+  line-height: 1.5;
+  font-family: "PingFang TC","Lantinghei TC","Heiti TC","Apple LiGothic",微軟正黑體,"Microsoft JhengHei","Microsoft JhengHei UI","Microsoft YaHei","Microsoft YaHei UI","PMingLiU",Arial,sans-serif;
+  font-weight: bold;
+}
+
+@mixin appearance-none {
+  appearance: none;
+}
+
+@mixin input-style {
+  border: 1px solid $color-input-border;
+  background-color: $color-input-background;
+  color: $color-input-text;
+  border-radius: 0;
+  width: 150px;
+  margin: 10px 0;
+  padding: 10px 60px 10px 18px;
+  font-size: 16px;
+  line-height: 24px;
+  box-sizing: border-box;
+  outline: none;
+  border-radius: 5px;
+  text-align: center;
+}
+
+@mixin slider-thumb{
+  border: 0;
+  height: $slider-thumb-size;
+  width: $slider-thumb-size;
+  border-radius: $slider-thumb-size;
+  background: $color-slider-thumb-background;
+  cursor: pointer;
+}
+
+@mixin slider-track{
+  width: 100%;
+  height: $slider-track-height;
+  cursor: pointer;
+}
+
+@mixin slider-box-shadow {
+  box-shadow: none;
+}
+
+@mixin center-unknown {
+  width: auto; 
+  position: absolute; 
+  margin: auto;
+  display: block;
+  left: 0; 
+  right: 0;
+}

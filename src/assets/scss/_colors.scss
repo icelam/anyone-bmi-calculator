@@ -1,0 +1,44 @@
+$color-white: #ffffff;
+$color-grey-95: #f2f2f2;
+$color-grey-93: #eeeeee;
+$color-grey-80: #cccccc;
+$color-grey-40: #666666;
+$color-grey-20: #333333;
+$color-black: #000000;
+
+$color-blue: #489bd5;
+
+$color-light-blue: #3399ff;
+$color-green: #009933;
+$color-yellow: #ffd633;
+$color-red: #d81e05;
+
+//body
+$color-body-background:  $color-blue;
+$color-font-light: $color-white;
+$color-font-dark: $color-grey-40;
+
+//input range
+$color-input-border: $color-grey-80;
+$color-input-background: $color-white;
+$color-input-text: $color-grey-40;
+
+//slider
+$color-slider-track-background: $color-grey-93;
+$color-slider-track-background-lower: $color-blue;
+$color-slider-thumb-background: $color-grey-40;
+
+//draw area
+$color-draw-area-background: $color-grey-95;
+$color-bmi-level-border: $color-grey-40;
+$color-bmi-level-text: $color-grey-40;
+$color-bmi-level-1-background: $color-light-blue;
+$color-bmi-level-2-background: $color-green;
+$color-bmi-level-3-background: $color-yellow;
+$color-bmi-level-4-background: $color-red;
+
+//calculator
+$color-calculator-area-background: $color-white;
+$color-calculator-label: $color-grey-20;
+$color-calculate-button-background: $color-grey-40;
+$color-calculate-button-text: $color-white;
