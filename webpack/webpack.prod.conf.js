@@ -1,4 +1,5 @@
 const Path = require('path');
+const fs = require('fs');
 const Webpack = require('webpack');
 const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -8,6 +9,15 @@ const PrerenderSpaPlugin = require('prerender-spa-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const Dotenv = require('dotenv-webpack');
+
+// https://github.com/bkeepers/dotenv#what-other-env-files-can-i-use
+const dotenvFiles = [
+  Path.resolve(__dirname, '../.env.production.local'),
+  Path.resolve(__dirname, '../.env.production'),
+  Path.resolve(__dirname, '../.env')
+].filter(dotenvFile => fs.existsSync(dotenvFile));
+
+console.log(dotenvFiles[0] + ' will be used.\n');
 
 module.exports = merge(baseWebpackConfig, {
   mode: 'production',
@@ -22,7 +32,7 @@ module.exports = merge(baseWebpackConfig, {
     new Webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
     }),
-    new Dotenv({path: Path.resolve(__dirname, '../.env.production')}),
+    new Dotenv({ path: dotenvFiles[0] }),
     new Webpack.optimize.ModuleConcatenationPlugin(),
     new MiniCssExtractPlugin({
       filename: 'assets/css/bundle.css'
@@ -30,6 +40,10 @@ module.exports = merge(baseWebpackConfig, {
     new PrerenderSpaPlugin({
       staticDir: Path.join(__dirname, '../dist'),
       routes: [ '/' ],
+      postProcess(renderedRoute) {
+        renderedRoute.html = renderedRoute.html.replace(/<script (.*?)src="(.*?)google(.*?)"(.*?)><\/script>/g, '');
+        return renderedRoute;
+      }
     }),
     new WorkboxPlugin.GenerateSW({
       clientsClaim: true,
