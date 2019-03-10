@@ -46,8 +46,8 @@ module.exports = merge(baseWebpackConfig, {
       }
     }),
     new WorkboxPlugin.GenerateSW({
-      clientsClaim: true,
-      skipWaiting: true,
+      clientsClaim: false,
+      skipWaiting: false,
       globIgnores: ['**/.DS_Store']
     }),
     new BundleAnalyzerPlugin({
