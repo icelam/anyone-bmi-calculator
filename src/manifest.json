@@ -1,7 +1,7 @@
 {
   "name": "任何仁BMI計算機",
   "short_name": "任何仁BMI計算機",
-  "description": "任何仁都可以用既BMI計算機",
+  "description": "任何仁都可以用嘅BMI計算機。只要輸入身高同體重，我就會話你知你嘅BMI。",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
