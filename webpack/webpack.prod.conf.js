@@ -21,7 +21,7 @@ console.log(dotenvFiles[0] + ' will be used.\n');
 
 module.exports = merge(baseWebpackConfig, {
   mode: 'production',
-  devtool: 'source-map',
+  // devtool: 'source-map',
   stats: 'errors-only',
   bail: true,
   output: {
