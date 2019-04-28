@@ -3,11 +3,10 @@ const fs = require('fs');
 const Webpack = require('webpack');
 const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const baseWebpackConfig = require('./webpack.base.conf');
 const PrerenderSpaPlugin = require('prerender-spa-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const Dotenv = require('dotenv-webpack');
 
 // https://github.com/bkeepers/dotenv#what-other-env-files-can-i-use
@@ -51,8 +50,8 @@ module.exports = merge(baseWebpackConfig, {
       globIgnores: ['**/.DS_Store']
     }),
     new BundleAnalyzerPlugin({
-      analyzerMode: "static",
-      reportFilename: '../bundle-analyzer-plugin-report.html',
+      analyzerMode: 'static',
+      reportFilename: '../bundle-analyzer-plugin-report.html'
     })
   ],
   module: {
