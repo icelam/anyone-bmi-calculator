@@ -7,7 +7,6 @@ const baseWebpackConfig = require('./webpack.base.conf');
 const PrerenderSpaPlugin = require('prerender-spa-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const OptimizeCssnanoPlugin = require('@intervolga/optimize-cssnano-plugin');
 const Dotenv = require('dotenv-webpack');
 
 // https://github.com/bkeepers/dotenv#what-other-env-files-can-i-use
@@ -36,16 +35,6 @@ module.exports = merge(baseWebpackConfig, {
     new Webpack.optimize.ModuleConcatenationPlugin(),
     new MiniCssExtractPlugin({
       filename: 'assets/css/bundle.css'
-    }),
-    new OptimizeCssnanoPlugin({
-      sourceMap: false,
-      cssnanoOptions: {
-        preset: ['default', {
-          discardComments: {
-            removeAll: true,
-          },
-        }],
-      },
     }),
     new PrerenderSpaPlugin({
       staticDir: Path.join(__dirname, '../dist'),
@@ -96,6 +85,15 @@ module.exports = merge(baseWebpackConfig, {
                 require('autoprefixer')(
                   {
                     'browsers': ['>0.2%', 'last 2 versions', 'not dead', 'ie 10', 'ie 11']
+                  }
+                ),
+                require('cssnano')(
+                  {
+                    preset: ['default', {
+                      discardComments: {
+                        removeAll: true,
+                      },
+                    }],
                   }
                 )
               ]

@@ -13,7 +13,6 @@
   "author": "Ice Lam",
   "license": "ISC",
   "devDependencies": {
-    "@intervolga/optimize-cssnano-plugin": "^1.0.6",
     "autoprefixer": "^9.4.10",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
@@ -23,6 +22,7 @@
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^4.5.4",
     "css-loader": "^1.0.0",
+    "cssnano": "^4.1.10",
     "dotenv-webpack": "^1.7.0",
     "eslint": "^5.7.0",
     "eslint-import-resolver-webpack": "^0.10.1",
