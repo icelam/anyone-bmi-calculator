@@ -34,7 +34,7 @@ module.exports = merge(baseWebpackConfig, {
     new Dotenv({ path: dotenvFiles[0] }),
     new Webpack.optimize.ModuleConcatenationPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'assets/css/bundle.css'
+      filename: 'assets/css/bundle.[chunkhash:8].css'
     }),
     new PrerenderSpaPlugin({
       staticDir: Path.join(__dirname, '../dist'),
