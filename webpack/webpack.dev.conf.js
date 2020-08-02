@@ -19,7 +19,7 @@ console.log(dotenvFiles[0] + ' will be used.\n');
 
 module.exports = merge(baseWebpackConfig, {
   mode: 'development',
-  devtool: 'cheap-eval-source-map',
+  devtool: 'inline-source-map',
   output: {
     chunkFilename: 'js/[name].chunk.js'
   },
